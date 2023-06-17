@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
 
 const Password = () => {
   const [user, setuser] = useState({
-    Email: "",
+    Email: "", Password : "" , ConfirmPassword : ""
   });
   const [code, setcode] = useState("");
   const [pass, setpass] = useState(false);
@@ -14,9 +14,16 @@ const Password = () => {
     code3: "",
     code4: "",
   });
-  const [finalcode, setfinalcode] = useState("");
+  const [isbtndis, setisbtndis] = useState(false)
+  const [authtoken, setauthtoken] = useState(null);
+  const [passvery, setpassvery] = useState(false);
+  const [password, setpassword] = useState("")
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    setcode(Math.floor(Math.random() * 10000));
+  },[])
 
   const sendEmail = () => {
     emailjs.init("VyjRnBemLCagAcdN3");
@@ -37,8 +44,14 @@ const Password = () => {
       });
   };
 
+  const submittimer = ()=>{
+    setisbtndis(true);
+    setTimeout(() => {
+      setisbtndis(false);      
+    }, 100000);
+  }
+
   const handlesubmit = async () => {
-    setcode(Math.floor(Math.random() * 10000));
     const response = await fetch(`http://localhost:5000/api/auth/find`, {
       method: "POST",
       headers: {
@@ -50,10 +63,33 @@ const Password = () => {
     });
     const json = await response.json();
     console.log(json);
-    if (json.Check) {
-      sendEmail();
+    if (json.Check == true) {
+      const token = await json.authtoken;
+      setauthtoken(token);
       setpass(true);
+      sendEmail();
+      submittimer();
       // navigate("/otp")
+    } else {
+      alert("Invalid Login Cred");
+      console.log("Invalid Login Cred");
+    }
+  };
+  const handlepass = async () => {
+    const response = await fetch(`http://localhost:5000/api/auth/changepassword`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token : authtoken,
+        Password : password
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.Check == true) {
+        navigate("/login");     
     } else {
       alert("Invalid Login Cred");
       console.log("Invalid Login Cred");
@@ -66,6 +102,9 @@ const Password = () => {
   const Onchange = (e) => {
     setinputcode({ ...inputcode, [e.target.name]: e.target.value });
   };
+  const OnChange = (e) => {
+    setpassword(e.target.value);
+  };
 
   const formcode = async()=>{
     let x = await (inputcode.code1*1000) + (inputcode.code2*100) + (inputcode.code3*10)  + (inputcode.code4*1);
@@ -75,11 +114,14 @@ const Password = () => {
 
   const handleverify  = async()=>{
     const formed_code  = await formcode(); 
-    console.log("THe formed code is : " + formed_code );
-    console.log("THe sent code is : " + code);
+    console.log(formed_code);
+    console.log(code);
     if (formed_code == code)
     {
-      console.log("Running");
+      console.log("Success");
+      console.log(authtoken);
+      setpass(false);
+      setpassvery(true);
     }
   }
 
@@ -89,7 +131,7 @@ const Password = () => {
         <div className="w-full h-full mb-10 text-5xl font-poppins font-medium">
           <h2 className="text-center">Forgot Password</h2>
         </div>
-        <div className="flex flex-col gap-10 font-poppins w-full py-4">
+        {!passvery ? (<div className="flex flex-col gap-10 font-poppins w-full py-4">
           <div className="bg-[#222222]  pl-2 py-4 rounded-md flex gap-4 ">
             <h3>Email : </h3>
             <input
@@ -99,7 +141,19 @@ const Password = () => {
               name="Email"
             />
           </div>
-        </div>
+        </div>) : (<div className="flex flex-col gap-10 font-poppins w-full py-4">
+          <div className="bg-[#222222]  pl-2 py-4 rounded-md flex gap-4 ">
+            <h3>New Password : </h3>
+            <input
+              type="password"
+              className="border-none bg-[#222222]"
+              onChange={OnChange}
+              value={password}
+              name="Password"
+            />
+          </div>
+        </div>)
+        }
         {!pass ? (
           ""
         ) : (
@@ -132,27 +186,33 @@ const Password = () => {
               name="code4"
               onChange={Onchange}
             />
-          </div>
-        )}
-        {!pass ? (
-          <div className="flex justify-center">
+            <div className="flex justify-center">
             <button
-              className="shadow-3xl font-medium font-poppins mt-5 text-xl px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
-              onClick={() => handlesubmit()}
-            >
-              Submit
-            </button>
-          </div>
-        ) : (
-          <div className="flex justify-center">
-            <button
-              className="shadow-3xl font-medium font-poppins mt-5 text-xl px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
               onClick={() => handleverify()}
             >
               Verify
             </button>
           </div>
+          </div>
         )}
+        {(!passvery) ? (<div className="flex justify-center">
+            <button
+              className="shadow-3xl font-medium font-poppins mt-5 text-xl px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={() => handlesubmit()}
+              disabled = {isbtndis}
+            >
+              Send Email
+            </button>
+          </div>):(<div className="flex justify-center">
+            <button
+              className="shadow-3xl font-medium font-poppins mt-5 text-xl px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={() => handlepass()}
+            >
+              Submit
+            </button>
+          </div>)}  
+        
       </div>
     </div>
   );

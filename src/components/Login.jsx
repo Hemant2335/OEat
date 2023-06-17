@@ -26,9 +26,9 @@ const Login = () => {
       localStorage.setItem("token", json.authtoken);
       navigate("/");
     }
-    else
+    else if (!json.Check)
     {
-      alert("Invalid Login Cred")
+      alert("Invalid Login Credentials")
       console.log("Invalid Login Cred")
     }
   };
@@ -60,7 +60,7 @@ const Login = () => {
         </div>
         <div className="flex items-center gap-2 my-4 text-right">
           <p className="text-sm font-poppins font-medium">
-            Already have a account?
+            Don't have a account?
           </p>
           <a
             onClick={() => navigate("/register")}

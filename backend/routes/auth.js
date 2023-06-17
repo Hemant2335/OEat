@@ -5,7 +5,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { body, validationResult, check } = require("express-validator");
 var jwt = require("jsonwebtoken");
-var fetchuser = require('../middleware/fetchuser');
+var fetchuser = require("../middleware/fetchuser");
 const { data } = require("autoprefixer");
 
 // Creating a Router using Express
@@ -92,13 +92,10 @@ router.post(
 
       let user = await User.findOne({ Email });
       if (!user) {
-        return res
-          .status(400)
-          .json({
-            Check,
-            error:
-              "Please Check Wheather the Email and the Password are Correct",
-          });
+        return res.status(400).json({
+          Check,
+          error: "Please Check Wheather the Email and the Password are Correct",
+        });
       }
 
       // Now if user exist then we will check for the given password
@@ -106,27 +103,22 @@ router.post(
       let passcomp = await bcrypt.compare(Password, user.Password);
 
       if (!passcomp) {
-        return res
-          .status(400)
-          .json({
-            success,
-            error:
-              "Please Check Wheather the Email and the Password are Correct",
-          });
+        return res.status(400).json({
+          Check,
+          error: "Please Check Wheather the Email and the Password are Correct",
+        });
       }
 
-      // Now if the Password if Correct we will Generate a auth token for the user
+      // Now if the Password is Correct we will Generate a auth token for the user
 
       const data = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       Check = true;
       const authtoken = jwt.sign(data, JWT);
       res.json({ Check, authtoken });
-
-
     } catch (error) {
       console.log(error);
       res.status(500).send("Internal  error Occured");
@@ -134,32 +126,25 @@ router.post(
   }
 );
 
+// Route 3 : To get the User details
 
-// Route 3 : To get the User details 
-
-router.get('/fetchuser' , fetchuser ,async(req , res)=>{
-
+router.get("/fetchuser", fetchuser, async (req, res) => {
   // So the userID is the ID which we have retrived from the fetchuser function
-
-  try{
+  try {
     let userID = req.user.id;
     const user = await User.findById(userID).select("-Password");
     res.send(user);
-  }catch(err)
-  {
+  } catch (err) {
     console.log(err.message);
     res.status(500).send("Internal  error Occured");
   }
-
-})
+});
 
 // Route 4 : To check wheather user Exist
 
 router.post(
   "/find",
-  [
-    body("Email", "Enter a Valid Email").isEmail(),
-  ],
+  [body("Email", "Enter a Valid Email").isEmail()],
   async (req, res) => {
     let Check = false;
 
@@ -171,25 +156,53 @@ router.post(
         return res.status(400).json({ Check, errors: errors.array() });
       }
 
-      const { Email} = req.body;
+      const { Email } = req.body;
 
       // Now for the Validation part first we will check if the entered email exist or not
 
       let user = await User.findOne({ Email });
       if (!user) {
-        return res
-          .status(400)
-          .json({
-            Check,
-            error:
-              "User do not exist",
-          });
+        return res.status(400).json({
+          Check,
+          error: "User do not exist",
+        });
       }
 
       // Now if user exist then we will check for the given password
-      Check  = true ;
-      res.json({ Check});
+      Check = true;
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      Check = true;
+      const authtoken = jwt.sign(data, JWT);
+      res.json({ Check, authtoken });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal  error Occured");
+    }
+  }
+);
 
+// Route 5 : To Change the Password
+
+router.post(
+  "/changepassword",
+  async (req, res) => {
+    let Check  = false ;
+    // Again we will check for errors first
+    const {token , Password} =  req.body;
+    try {
+        const data = jwt.verify(token , JWT);
+        const userID = data.user.id;
+        const user = await User.findById(userID);
+        const salt = await bcrypt.genSalt(10);
+        const hashedpassword = await bcrypt.hash(Password, salt);
+        user.Password = hashedpassword ;
+        user.save();
+        Check = true ; 
+        res.send({Check , user});
     } catch (error) {
       console.log(error);
       res.status(500).send("Internal  error Occured");
