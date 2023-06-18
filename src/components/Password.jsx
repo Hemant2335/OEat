@@ -107,7 +107,7 @@ const Password = () => {
   };
 
   const formcode = async()=>{
-    let x = await (inputcode.code1*1000) + (inputcode.code2*100) + (inputcode.code3*10)  + (inputcode.code4*1);
+    let x = await (inputcode.code1*1000) + (inputcode.code2*100) + (inputcode.code3*10)  + ((inputcode.code4 == 0 )?(0):(inputcode.code4*1));
     return x;
   }
 

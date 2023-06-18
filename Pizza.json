@@ -1,0 +1,154 @@
+[
+  {
+    "Name": "The 4 Cheese Pizza",
+    "Price": 694,
+    "desc": "Cheese Overloaded pizza with 4 different varieties of cheese and 4 times the cheese of a normal pizza, including a spicy hit of Ghost Pepper flavoured Cheese",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/e76tyoj7xuz2cib82cuk",
+    "Quantity": 25
+  },
+  {
+    "Name": "Margherita Pizza",
+    "Price": 314,
+    "desc": "Classic delight with 100% real mozzarella cheese. Available in Cheese Burst, Wheat Thin Crust and Pan Crust options",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/39e8f7a1cb3398d997ce415cc86210db",
+    "Quantity": 25
+  },
+  {
+    "Name": "Double Cheese Margherita Pizza",
+    "Price": 464,
+    "desc": "A classic delight loaded with extra 100% real mozzarella cheese",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/eb10d3bbeea43e9150307a8ebb32b220",
+    "Quantity": 25
+  },
+  {
+    "Name": "Farmhouse Pizza",
+    "Price": 544,
+    "desc": "Delightful combination of onion, capsicum, tomato & grilled mushroom. Available in Cheese Burst, Wheat Thin Crust and Pan Crust options",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/f7ef8df0fed856ee03c983f156fbb68d",
+    "Quantity": 25
+  },
+  {
+    "Name": "Peppy Paneer Pizza",
+    "Price": 544,
+    "desc": "Flavorful trio of juicy paneer, crisp capsicum with spicy red paprika",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/81fbe5f6e8576cc7bdae699c3900197c",
+    "Quantity": 25
+  },
+  {
+    "Name": "Mexican Green Wave Pizza",
+    "Price": 544,
+    "desc": "Mexican herbs sprinkled on onion, capsicum, tomato & jalapeno",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/d8c9b9418213d3d7f813808d91a98fbc",
+    "Quantity": 25
+  },
+  {
+    "Name": "Deluxe Veggie Pizza",
+    "Price": 644,
+    "desc": "Veg delight - onion, capsicum, grilled mushroom, corn & paneer",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/57e312e628c61c44d2f68aaf0c065981",
+    "Quantity": 25
+  },
+  {
+    "Name": "Veg Extravaganza Pizza",
+    "Price": 644,
+    "desc": "Black olives, capsicum, onion, grilled mushroom, corn, tomato, jalapeno & extra cheese. Available in Cheese Burst, Wheat Thin Crust and Pan Crust options.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/b337ca46e24a31366f59f64d3ad923f5",
+    "Quantity": 25
+  },
+  {
+    "Name": "Veggie Paradise Pizza",
+    "Price": 534,
+    "desc": "The awesome foursome! Golden corn, black olives, capsicum, red paprika.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/d256f07dc0da10e511f6442ee0886131",
+    "Quantity": 25
+  },
+  {
+    "Name": "Fresh Veggie Pizza",
+    "Price": 454,
+    "desc": "Delectable combination of onion & capsicum, a veggie lovers pick",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/4f3395d60363f951a7f9e2debbc352f2",
+    "Quantity": 25
+  },
+  {
+    "Name": "Indi Tandoori Paneer Pizza",
+    "Price": 634,
+    "desc": "It is hot. It is spicy. It is oh-so-Indian. Tandoori paneer with capsicum, red paprika & mint mayo. Available in Cheese Burst, Wheat Thin Crust and Pan Crust options",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3f7b4790495d3ad00cc5de3c40edb8d3",
+    "Quantity": 25
+  },
+  {
+    "Name": "Cheese n Tomato Pizza",
+    "Price": 454,
+    "desc": "A delectable combination of cheese and juicy tomato",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/d2e04545e5698cc103c2f5e28dffe5c3",
+    "Quantity": 25
+  },
+  {
+    "Name": "Achari Do Pyaza Pizza",
+    "Price": 404,
+    "desc": "Tangy & spicy achari flavours on a super cheesy onion pizza- as desi as it gets!",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/c47f616328092869ed0def9f53df2767",
+    "Quantity": 25
+  },
+  {
+    "Name": "Moroccan Spice Pasta Pizza",
+    "Price": 404,
+    "desc": "A pizza loaded with a spicy combination of Harissa sauce and delicious pasta.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/712cd82ec08460b2519ec6493da61269",
+    "Quantity": 25
+  },
+  {
+    "Name": "Cheese n Corn Pizza",
+    "Price": 454,
+    "desc": "A delectable combination of sweet & juicy golden corn",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/8245b4fd8d77f1c594c220a228ebeb97",
+    "Quantity": 25
+  },
+  {
+    "Name": "Corn n Cheese Paratha Pizza",
+    "Price": 189,
+    "desc": "A crazy fusion like never before. A delicious fusion of corn stuffed paratha and cheesy pizza.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/bc38205c7acfe96175b160571f5d6a21",
+    "Quantity": 25
+  },
+  {
+    "Name": "Paneer Paratha Pizza",
+    "Price": 219,
+    "desc": "An epic fusion of paratha and pizza with melting cheese & soft paneer stuffing to satisfy all your indulgent cravings.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3fa8f789f366b6281b4d752aa649b385",
+    "Quantity": 25
+  },
+  {
+    "Name": "Blazing Onion & Paprika",
+    "Price": 394,
+    "desc": "Hot & spicy pizza with a new spicy peri peri sauce and topped with onion & red paprika on a Domino's cheesy base.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/3e7499b579521f6acf7f4dbebb374b41",
+    "Quantity": 25
+  },
+  {
+    "Name": "Fiery Jalapeno & Paprika",
+    "Price": 394,
+    "desc": "A super spicy veg pizza with a new spicy peri peri sauce and topped with jalapeno & red paprika.",
+    "type": "Veg",
+    "img_url": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/825cf2e2e5851112830ac5beb5f1fe4e",
+    "Quantity": 25
+  }
+]

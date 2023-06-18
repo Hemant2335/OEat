@@ -20,7 +20,8 @@ app.use(express.json()); // To use the json file as req and res ;
 
 // Creating the routes
 app.use("/api/auth" , require('./routes/auth'));
-// app.use("/api/buy" , require('./routes/food'));
+app.use("/api/store" , require('./routes/food'));
+app.use("/api/buy" , require('./routes/payment'));
 
 app.listen(port, ()=>{
     console.log(`The Server is Running on port : ${port}`) ; 

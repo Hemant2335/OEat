@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import {Homepage , Cart  , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard} from "./components" ;
+import {Homepage , Cart  , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess} from "./components" ;
 
 const App = () => {
   return (
@@ -16,9 +16,11 @@ const App = () => {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/Password" element={<Password/>} />
           <Route exact path="/register" element={<Register/>} />
-          <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/order" element={<Order/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/dashboard" element={< Dashboard/>} />
+          <Route exact path="/custom" element={<Custom/>} />
+          <Route exact path="/success" element={<Sucess/>} />
         </Routes>
         <Footer/>
       </Router>
