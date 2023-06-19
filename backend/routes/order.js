@@ -17,7 +17,6 @@ router.post('/addorder', fetchuser, async (req, res) => {
         Name, Price , desc , type , img_url , Quantity, user : req.user.id 
       })
       const savedorder = await order.save()
-  
       res.json(savedorder) ;
       
     } catch (error) {
