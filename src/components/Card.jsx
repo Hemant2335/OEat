@@ -7,23 +7,31 @@ import Ordercontext from '../context/Context';
 
 
 const Card = ({item}) => {
-
-  const {Orderdata , setOrderdata} = useContext(Ordercontext);
-
   const [OrderId, setOrderId] = useState('')
   const navigate = useNavigate();
+
+  const addtocart = async () => {
+    const response = await fetch(`http://localhost:5000/api/order/addorder`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        Name: item?.Name,
+        Price: item?.Price,
+        desc: item?.desc,
+        type: item?.type,
+        img_url: item?.img_url,
+        Quantity: item?.Quantity,
+      }),
+    });
+    console.log(response);
+  };
 
 
   const handlebuy = async () => {
     try {
-      setOrderdata({
-        Name : item?.Name,
-        Price : item?.Price,
-        desc : item?.desc,
-        type : item?.type,
-        img_url : item?.img_url,
-        Quantity : item?.Quantity,
-      })
       const response = await fetch(`http://localhost:5000/api/buy/create-payment`, {
       method: "POST",
       headers: {
@@ -49,6 +57,7 @@ const Card = ({item}) => {
         order_id: OrderId,
         handler: response => {
           // Handle the payment success or failure
+          addtocart();
           navigate("/success")
         },
         prefill: {
