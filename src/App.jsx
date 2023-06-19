@@ -5,10 +5,12 @@ import {
   Route,
 } from "react-router-dom";
 import {Homepage , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess} from "./components" ;
+import State from './context/State';
 
 const App = () => {
   return (
     <div>
+      <State>
       <Router>
         <Navbar/>
         <Routes>
@@ -24,6 +26,7 @@ const App = () => {
         </Routes>
         <Footer/>
       </Router>
+      </State>
     </div>
   )
 }

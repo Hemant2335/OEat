@@ -2,9 +2,13 @@ import React from 'react'
 import { useState } from 'react';
 import { TiShoppingCart } from "react-icons/ti";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import Ordercontext from '../context/Context';
 
 
 const Card = ({item}) => {
+
+  const {Orderdata , setOrderdata} = useContext(Ordercontext);
 
   const [OrderId, setOrderId] = useState('')
   const navigate = useNavigate();
@@ -12,6 +16,14 @@ const Card = ({item}) => {
 
   const handlebuy = async () => {
     try {
+      setOrderdata({
+        Name : item?.Name,
+        Price : item?.Price,
+        desc : item?.desc,
+        type : item?.type,
+        img_url : item?.img_url,
+        Quantity : item?.Quantity,
+      })
       const response = await fetch(`http://localhost:5000/api/buy/create-payment`, {
       method: "POST",
       headers: {
