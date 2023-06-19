@@ -8,7 +8,8 @@ const OrderSchema = new Schema({
     desc : {type: String , required : true},
     type : {type: String , required : true},
     img_url : {type: String , required : true},
-    Quantity : {type : Number , required : true}
+    Quantity : {type : Number , required : true},
+    Status : {type : String , required : true}
   });
 
   const Order = mongoose.model('order',OrderSchema);

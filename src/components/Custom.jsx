@@ -3,6 +3,7 @@ import Wrapper from "./Wrapper";
 import Pizzacard from "./Custom/Pizzacard";
 import { TiShoppingCart } from "react-icons/ti";
 import { useNavigate } from 'react-router-dom';
+import poster from "../assets/poster.jpg"
 
 const Custom = () => {
     const [base, setbase] = useState({name : null , url : null ,price : null});
@@ -63,6 +64,26 @@ const Custom = () => {
     console.log(custompizza);
   }, [custompizza]);
 
+  const addtocart = async () => {
+    const response = await fetch(`http://localhost:5000/api/order/addorder`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        Name: "Custom",
+        Price: (Number(custompizza?.Base?.price) +Number(custompizza?.Sause?.price) + Number(custompizza?.Cheese?.price) + Number(custompizza?.Veg?.price) ),
+        desc: "This is  a custom made by you yourself",
+        type: "veg",
+        img_url: poster,
+        Quantity: 25,
+        Status : "Yet to be Delivered"
+      }),
+    });
+    console.log(response);
+  };
+
   
   const [OrderId, setOrderId] = useState('')
   const navigate = useNavigate();
@@ -95,6 +116,7 @@ const Custom = () => {
         order_id: OrderId,
         handler: response => {
           // Handle the payment success or failure
+          addtocart();
           navigate("/success")
         },
         prefill: {

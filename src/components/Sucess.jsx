@@ -1,17 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import done from "../assets/done.jpg"
 
 const Sucess = () => {
 
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-screen justify-center items-center">
-      <div className="flex flex-col gap-10">
-        <iframe
-          src="https://embed.lottiefiles.com/animation/88860"
-          className="rounded-md"
-        ></iframe>
+    <div className="flex justify-center items-center">
+      <div className="flex flex-col gap-2 my-5">
+        <img src={done} alt="Success" className="rounded-md" width={400}/>
         <h2 className="text-center text-xl font-poppins font-medium">
           Order Sucessfully Placed
         </h2>

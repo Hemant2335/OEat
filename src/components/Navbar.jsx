@@ -86,6 +86,12 @@ const Navbar = () => {
                     </li>
                     <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
+                      onClick={() => navigate("/order")}
+                    >
+                      <a>Orders</a>
+                    </li>
+                    <li
+                      className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       
                     >
                       <a onClick={() => handlelogout()}>Logout</a>

@@ -10,11 +10,11 @@ const router = express.Router();
 router.post('/addorder', fetchuser, async (req, res) => {
     try {
 
-    const { Name, Price , desc , type , img_url , Quantity} = req.body;
+    const { Name, Price , desc , type , img_url , Quantity , Status} = req.body;
 
 
       const order = new Order ({
-        Name, Price , desc , type , img_url , Quantity, user : req.user.id 
+        Name, Price , desc , type , img_url , Quantity,Status , user : req.user.id 
       })
       const savedorder = await order.save()
       res.json(savedorder) ;

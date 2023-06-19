@@ -24,6 +24,7 @@ const Card = ({item}) => {
         type: item?.type,
         img_url: item?.img_url,
         Quantity: item?.Quantity,
+        Status : "Yet to be Delivered" 
       }),
     });
     console.log(response);
