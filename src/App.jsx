@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import {Homepage , Cart  , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess} from "./components" ;
+import {Homepage , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess} from "./components" ;
 
 const App = () => {
   return (

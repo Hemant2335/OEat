@@ -95,7 +95,7 @@ const Custom = () => {
         order_id: OrderId,
         handler: response => {
           // Handle the payment success or failure
-          navigate("/")
+          navigate("/success")
         },
         prefill: {
           email: 'knrt73373@gmail.com',

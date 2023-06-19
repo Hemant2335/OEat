@@ -2,13 +2,12 @@
 
 const express = require("express");
 const Pizza = require("../models/Pizza");
-const { body, validationResult} = require("express-validator");
 const fetchuser = require("../middleware/fetchuser");
 
 // Creating a Router using Express
 const router = express.Router();
 
-// Route 1 : To fetch the data a User PORT : api/auth/createuser
+// Route 1 : To fetch the all the pizza PORT : api/store/fetchpizza
 
 router.get(
   "/fetchpizza", fetchuser ,
