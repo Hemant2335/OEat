@@ -7,6 +7,7 @@ const Pizzacard = ({item , handlepizzaclick}) => {
     <img src={item?.imgurl} alt="poster" className='rounded-lg'  width={200} />
     <h2 className='text-md font-poppins  text-center'>{item.Name}</h2>
     <h2 className='text-md font-poppins  text-center'>₹{item.Price}</h2>
+    <h2 className='text-sm font-poppins text-gray-400  text-center'>Quantity : {item.Quantity}</h2>
     </div>
   )
 }

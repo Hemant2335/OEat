@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import {Homepage , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess} from "./components" ;
+import {Homepage , Login  , Register , Navbar , Footer , About ,Password ,  Dashboard , Custom , Order , Sucess , Shop} from "./components" ;
 import State from './context/State';
 
 const App = () => {
@@ -23,6 +23,7 @@ const App = () => {
           <Route exact path="/dashboard" element={< Dashboard/>} />
           <Route exact path="/custom" element={<Custom/>} />
           <Route exact path="/success" element={<Sucess/>} />
+          <Route exact path="/shop" element={<Shop/>} />
         </Routes>
         <Footer/>
       </Router>

@@ -17,7 +17,7 @@ const fetchuser = (req , res , next)=>{
         next();
     }catch(err)
     {
-        res.send(401).send("Internal Error Occured")     
+        console.log("Some error Occurred");   
     }
 
 }

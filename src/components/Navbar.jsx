@@ -1,12 +1,17 @@
 import React from "react";
 import logo from "../assets/burger.png";
 import profile from "../assets/man.png";
+import adminprofile from "../assets/profile.png";
 import Wrapper from "./Wrapper";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Ordercontext from "../context/Context";
+import { useContext } from "react";
 
 const Navbar = () => {
   const [hidden, sethidden] = useState(true);
+
+  const {isadmin , setisadmin} = useContext(Ordercontext);
 
   const navigate = useNavigate();
 
@@ -62,9 +67,8 @@ const Navbar = () => {
             <div
               className="shadow-3xl cursor-pointer w-fit font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
               onClick={() => toogledropdown()}
-            >
-              {" "}
-              <img src={profile} alt="profile" className="h-10" />
+            >{isadmin ? (<img src={adminprofile} alt="profile" className="h-10" />) :(<img src={profile} alt="profile" className="h-10" />)}
+              
             </div>
             {hidden ? (
               ""
@@ -78,12 +82,18 @@ const Navbar = () => {
                     >
                       <a>Profile</a>
                     </li>
-                    <li
+                    {isadmin ? (                    <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       onClick={() => navigate("/dashboard")}
                     >
                       <a>Dashboard</a>
-                    </li>
+                    </li>) : (                    <li
+                      className="font-medium font-poppins hover:text-red-400 cursor-pointer"
+                      onClick={() => navigate("/shop")}
+                    >
+                      <a>Shop</a>
+                    </li>)}
+
                     <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       onClick={() => navigate("/order")}

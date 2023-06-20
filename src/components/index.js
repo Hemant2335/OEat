@@ -9,5 +9,6 @@ import Dashboard from "./Dashboard";
 import Custom from "./Custom";
 import Order from "./Order";
 import Sucess from "./Sucess";
+import Shop from "./Shop";
 
-export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess};
+export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess, Shop};

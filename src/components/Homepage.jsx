@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Wrapper from './Wrapper'
 import poster from "../assets/poster.jpg";
 import { useNavigate } from 'react-router-dom';
+import Ordercontext from '../context/Context';
+import { useContext } from 'react';
 
 const Homepage = () => {
-
   const navigate  = useNavigate();
+
+  const {isadmin , setisadmin} = useContext(Ordercontext);
+
+  useEffect(()=>{
+    const show = async()=>{
+      const response = await fetch(`http://localhost:5000/api/auth/fetchuser`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token" : localStorage.getItem("token")
+        },
+      });
+      const json = await response.json();
+      console.log(json?.isadmin);
+      if (json?.isadmin)
+      {
+        setisadmin(true);
+      }
+      else{
+        setisadmin(false);
+      }
+    }
+    show();
+  },[])
 
   return (
     <Wrapper>
@@ -30,12 +55,18 @@ const Homepage = () => {
               Get Started
             </button>
           </div>): (        <div className='mt-10'>
-            <button
+            {isadmin ? (            <button
               className="shadow-3xl text-xl  font-medium font-poppins px-4 py-4 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
               onClick={() => navigate("/dashboard")}
             >
               Go to Dashboard
-            </button>
+            </button>) : (            <button
+              className="shadow-3xl text-xl  font-medium font-poppins px-4 py-4 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={() => navigate("/shop")}
+            >
+              Start Shopping
+            </button>)}
+
           </div>)}
 
         </div>

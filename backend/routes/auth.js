@@ -49,6 +49,7 @@ router.post(
       Name: req.body.Name,
       Email: req.body.Email,
       Password: hashedpassword,
+      isadmin : false
     })
       .then((user) => {
         const data = {
@@ -136,7 +137,7 @@ router.get("/fetchuser", fetchuser, async (req, res) => {
     res.send(user);
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Internal  error Occured");
+    res.sendStatus("Internal Error Occured")
   }
 });
 
@@ -211,3 +212,58 @@ router.post(
 );
 
 module.exports = router;
+
+
+// Route 6 : To create a Admin
+
+router.post(
+  "/createadmin",
+  [
+    body("Name", "Enter a Valid Name").isLength({ min: 3 }),
+    body("Email", "Enter a Valid Email").isEmail(),
+    body("Password", "Enter a Valid Password").isLength({ min: 5 }),
+  ],
+  async (req, res) => {
+    let Check = false;
+
+    // IF there will be any error it will validate and check
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ Check, errors: errors.array() });
+    }
+
+    // Now Checking if there is no other user existing with the same email
+    let user = await User.findOne({ Email: req.body.Email });
+    if (user) {
+      return res
+        .status(400)
+        .json({ Check, error: "User with same email exist" });
+    }
+
+    // Now if it passes all the tests
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedpassword = await bcrypt.hash(req.body.Password, salt);
+
+    user = await User.create({
+      Name: req.body.Name,
+      Email: req.body.Email,
+      Password: hashedpassword,
+      isadmin : true
+    })
+      .then((user) => {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+        Check = true;
+        const authtoken = jwt.sign(data, JWT);
+        res.json({ Check, authtoken });
+      })
+      .catch((err) => {
+        console.log("Error Has Recieved");
+        res.status(500).send("Internal Error");
+      });
+  }
+);

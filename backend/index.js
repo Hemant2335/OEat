@@ -23,6 +23,7 @@ app.use("/api/auth" , require('./routes/auth'));
 app.use("/api/store" , require('./routes/food'));
 app.use("/api/buy" , require('./routes/payment'));
 app.use("/api/order" , require('./routes/order'));
+app.use("/api/item" , require('./routes/item'));
 
 app.listen(port, ()=>{
     console.log(`The Server is Running on port : ${port}`) ; 

@@ -4,18 +4,11 @@ import { useState } from "react";
 
 const State = (props)=>{
 
-    const [Orderdata, setOrderdata] = useState(    {
-        Name : null,
-        Price : null,
-        desc: null ,
-        type: null,
-        img_url: null ,
-        Quantity: 25
-    })
+    const [isadmin, setisadmin] = useState(false);
 
 
     return(
-        <Ordercontext.Provider value={{Orderdata , setOrderdata}}>
+        <Ordercontext.Provider value={{isadmin, setisadmin}}>
             {props.children}
         </Ordercontext.Provider>
     )
