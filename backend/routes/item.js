@@ -37,15 +37,32 @@ router.post('/updateitem', fetchuser, async (req, res) => {
         });
     
         await item.save(); // Save the updated item
-    
         res.send(item);
       }
     } catch (err) {
       console.log("Some error occurred:", err);
     }
   });
-  
-  
-  
+
+// Route 3 : For the User endpoint 
+
+
+router.post('/updateuseritem', fetchuser, async (req, res) => {
+    try {
+        const {ID, itemname } = req.body;
+        let item = await Item.findById(ID);
+        item?.MainName.forEach((pizzaItem) => {
+          if (pizzaItem.Name === itemname) {
+            console.log(pizzaItem.Name);
+            pizzaItem.Quantity = pizzaItem.Quantity - 1; // Update the Quantity with the new value
+            console.log(pizzaItem.Quantity);
+          }
+        });
+        await item.save(); // Save the updated item
+        res.send(item);
+    } catch (err) {
+      console.log("Some error occurred:", err);
+    }
+  });
 
 module.exports = router

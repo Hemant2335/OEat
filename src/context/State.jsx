@@ -4,11 +4,11 @@ import { useState } from "react";
 
 const State = (props)=>{
 
-    const [isadmin, setisadmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isadmin") === "Yes");
 
 
     return(
-        <Ordercontext.Provider value={{isadmin, setisadmin}}>
+        <Ordercontext.Provider value={{isAdmin, setIsAdmin}}>
             {props.children}
         </Ordercontext.Provider>
     )

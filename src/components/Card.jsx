@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import Ordercontext from '../context/Context';
 
 
+
 const Card = ({item}) => {
   const [OrderId, setOrderId] = useState('')
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ const Card = ({item}) => {
     });
     console.log(response);
   };
-
 
   const handlebuy = async () => {
     try {

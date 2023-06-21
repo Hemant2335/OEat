@@ -118,8 +118,9 @@ router.post(
         },
       };
       Check = true;
+      const status = user?.isadmin ; 
       const authtoken = jwt.sign(data, JWT);
-      res.json({ Check, authtoken });
+      res.json({ Check, authtoken , status });
     } catch (error) {
       console.log(error);
       res.status(500).send("Internal  error Occured");

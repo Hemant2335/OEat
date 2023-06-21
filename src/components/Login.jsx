@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Ordercontext from '../context/Context';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 const Login = () => {
   const [user, setuser] = useState({
     Email: "",
@@ -8,7 +10,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-
+  const {isAdmin, setIsAdmin}   = useContext(Ordercontext);
   const handlesubmit = async () => {
     const response = await fetch(`http://localhost:5000/api/auth/login`, {
       method: "POST",
@@ -24,6 +26,10 @@ const Login = () => {
     console.log(json);
     if (json.Check) {
       localStorage.setItem("token", json.authtoken);
+      if (json?.status)
+      {
+        localStorage.setItem("isadmin" , true);
+      }
       navigate("/");
     }
     else if (!json.Check)

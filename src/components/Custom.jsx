@@ -14,7 +14,7 @@ const Custom = () => {
     const [Sause, setSause] = useState([]);
     const [Cheese, setCheese] = useState([]);
     const [Veg, setVeg] = useState([]);
-    const [json, setjson] = useState("");
+    const [itemId, setitemId] = useState(null);
     const [isLoading, setisLoading] = useState(true);
 
     const show = async()=>{
@@ -27,13 +27,27 @@ const Custom = () => {
         },
       });
       const json = await response.json();
-      setpizza(json?.[0]?.Pizza);
-      setSause(json?.[1]?.Sause);
-      setCheese(json?.[2]?.Cheese);
-      setVeg(json?.[3]?.Veg);
-      console.log(json?.[0]?.Pizza?.[0]?.Quantity);
+      setpizza(json?.[0]);
+      setSause(json?.[1]);
+      setCheese(json?.[2]);
+      setVeg(json?.[3]);
       setisLoading(false);
     }
+
+    const changequantity = async (id , Name) => {
+      const response = await fetch(`http://localhost:5000/api/item/updateuseritem`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          ID : id,
+          itemname : Name
+        }),
+      });
+      console.log(response);
+    };
 
     useEffect(() => {
       show();    
@@ -50,16 +64,16 @@ const Custom = () => {
   
 
   const handlepizzaclick = (name , imgurl ,price) => {
-    setbase({base : name , url : imgurl,price:price});
+    setbase({base : name , url : imgurl,price:price , type : "Pizza"});
   }
   const handlesauseclick = (name , imgurl,price) => {
-    setsause({base : name , url : imgurl,price:price});
+    setsause({base : name , url : imgurl,price:price , type : "Sause"});
   }
   const handlecheeseclick = (name , imgurl ,price) => {
-    setcheese({base : name , url : imgurl ,price:price});
+    setcheese({base : name , url : imgurl ,price:price , type : "Cheese"});
   }
   const handlevegclick = (name , imgurl,price) => {
-    setveg({base : name , url : imgurl,price:price});
+    setveg({base : name , url : imgurl,price:price , type : "Veg"});
   }
 
   const addtocart = async () => {
@@ -114,6 +128,24 @@ const Custom = () => {
         order_id: OrderId,
         handler: response => {
           // Handle the payment success or failure
+          const items = Object.values(custompizza); // Get an array of the custom pizza items
+          for (const item of items) {
+            if (item) {
+              if (item?.type === "Pizza") {
+                changequantity(pizza._id, item.base);
+                console.log(item);
+              } else if (item?.type === "Sause") {
+                changequantity(Sause._id, item.base);
+                console.log(item);
+              } else if (item?.type === "Cheese") {
+                changequantity(Cheese._id, item.base);
+                console.log(item);
+              } else {
+                changequantity(Veg._id, item.base);
+                console.log(item);
+              }
+            }
+          }
           addtocart();
           navigate("/success")
         },
@@ -194,10 +226,12 @@ const Custom = () => {
           Select the Base Pizza
         </h1>
         <div className="flex gap-5 mt-10">
-          {pizza?.map((item) => {
+          {pizza?.MainName?.map((item) => {
             return (
               <Pizzacard
                 item={item}
+                searchid = {pizza?._id}
+                key={item?._id}
                 handlepizzaclick={() => handlepizzaclick(item.Name , item?.imgurl , item?.Price)}
               />
             );
@@ -207,10 +241,12 @@ const Custom = () => {
           Select Sause
         </h1>
         <div className="flex gap-5 mt-10">
-          {Sause?.map((item) => {
+          {Sause?.MainName?.map((item) => {
             return (
               <Pizzacard
                 item={item}
+                searchid = {Sause?._id}
+                key={item?._id}
                 handlepizzaclick={() => handlesauseclick(item.Name , item?.imgurl, item?.Price)}
               />
             );
@@ -220,10 +256,12 @@ const Custom = () => {
           Select the Cheese
         </h1>
         <div className="flex gap-5 mt-10">
-          {Cheese?.map((item) => {
+          {Cheese?.MainName?.map((item) => {
             return (
               <Pizzacard
                 item={item}
+                searchid = {Cheese?._id}
+                key={item?._id}
                 handlepizzaclick={() => handlecheeseclick(item.Name , item?.imgurl, item?.Price)}
               />
             );
@@ -233,10 +271,12 @@ const Custom = () => {
           Select the Veggies
         </h1>
         <div className="flex gap-5 mt-10">
-          {Veg?.map((item) => {
+          {Veg?.MainName?.map((item) => {
             return (
               <Pizzacard
                 item={item}
+                searchid = {Veg?._id}
+                key={item?._id}
                 handlepizzaclick={() => handlevegclick(item.Name , item?.imgurl, item?.Price)}
               />
             );

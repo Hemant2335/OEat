@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useState } from 'react'
 import Wrapper from './Wrapper'
 import poster from "../assets/poster.jpg";
 import { useNavigate } from 'react-router-dom';
@@ -7,30 +7,14 @@ import { useContext } from 'react';
 
 const Homepage = () => {
   const navigate  = useNavigate();
+  const { isAdmin } = useContext(Ordercontext);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const {isadmin , setisadmin} = useContext(Ordercontext);
-
-  useEffect(()=>{
-    const show = async()=>{
-      const response = await fetch(`http://localhost:5000/api/auth/fetchuser`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token" : localStorage.getItem("token")
-        },
-      });
-      const json = await response.json();
-      console.log(json?.isadmin);
-      if (json?.isadmin)
-      {
-        setisadmin(true);
-      }
-      else{
-        setisadmin(false);
-      }
+  useEffect(() => {
+    if (isAdmin) {
+      setRefreshKey(prevKey => prevKey + 1);
     }
-    show();
-  },[])
+  }, [isAdmin]);
 
   return (
     <Wrapper>
@@ -55,7 +39,7 @@ const Homepage = () => {
               Get Started
             </button>
           </div>): (        <div className='mt-10'>
-            {isadmin ? (            <button
+            {localStorage.getItem("isadmin")? (            <button
               className="shadow-3xl text-xl  font-medium font-poppins px-4 py-4 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
               onClick={() => navigate("/dashboard")}
             >

@@ -1,5 +1,6 @@
 const express = require("express");
 const Order = require("../models/Orders");
+const User = require("../models/User");
 const fetchuser = require("../middleware/fetchuser");
 
 
@@ -37,6 +38,42 @@ router.get('/fetchallorders', fetchuser, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 })
+
+// Route 3 : TO Update the order
+
+router.post('/updateuserorder', fetchuser, async (req, res) => {
+  try {
+      const {ID, itemname } = req.body;
+      let item = await Item.findById(ID);
+      item?.MainName.forEach((pizzaItem) => {
+        if (pizzaItem.Name === itemname) {
+          console.log(pizzaItem.Name);
+          pizzaItem.Quantity = pizzaItem.Quantity - 1; // Update the Quantity with the new value
+          console.log(pizzaItem.Quantity);
+        }
+      });
+      await item.save(); // Save the updated item
+      res.send(item);
+  } catch (err) {
+    console.log("Some error occurred:", err);
+  }
+});
+
+// Route 4 : To fetch all the data
+
+router.get('/fetchadminorders', fetchuser, async (req, res) => {
+  try {
+    let userID = req.user.id;
+    const user = await User.findById(userID).select("-Password");
+    if (user?.isadmin) {
+      const orders = await Order.find();
+      res.json(orders);
+    }
+  } catch (err) {
+    console.log("Some error occurred:", err);
+  }
+})
+
 
 
 module.exports = router
