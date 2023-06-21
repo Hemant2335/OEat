@@ -88,13 +88,17 @@ const Navbar = () => {
                     >
                       <a>Shop</a>
                     </li>)}
-
-                    <li
+                    {localStorage.getItem("isadmin")? (                    <li
+                      className="font-medium font-poppins hover:text-red-400 cursor-pointer"
+                      onClick={() => navigate("/adminorder")}
+                    >
+                      <a>Order</a>
+                    </li>) : (                    <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       onClick={() => navigate("/order")}
                     >
-                      <a>Orders</a>
-                    </li>
+                      <a>Order</a>
+                    </li>)}
                     <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       

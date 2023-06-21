@@ -45,11 +45,23 @@ const Custom = () => {
     useEffect(() => {
       show();    
     }, [])
+
+    const handleReload = () => {
+      window.location.reload();
+    };
     
   return (
     <Wrapper>
       <div className="mt-10">
-        <h1 className="text-5xl font-poppins font-semibold">Inventory</h1>
+      <div className='flex justify-between'>
+      <h1 className='text-4xl font-poppins font-semibold'>Inventory</h1>
+      <button
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={()=>handleReload()}
+            >
+              Refresh
+            </button>
+      </div>
         </div>
         <h1 className="text-xl font-poppins font-semibold mt-10">
           Pizza

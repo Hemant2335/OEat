@@ -10,5 +10,6 @@ import Custom from "./Custom";
 import Order from "./Order";
 import Sucess from "./Sucess";
 import Shop from "./Shop";
+import AdminOrder from "./AdminOrder";
 
-export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess, Shop};
+export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess, Shop ,AdminOrder};

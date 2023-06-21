@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from './Wrapper'
-import CartCard from './CartCard'
+import AdminCartCard from './AdminCartCard'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import empty from "../assets/empty.jpg";
@@ -23,12 +23,18 @@ const AdminOrder = () => {
       },
     });
     const json = await response.json();
+    console.log(json);
     setdata(json);
     setisLoading(false);
     console.log(data);
   }
   show();
   }, []);
+
+
+  const handleReload = () => {
+    window.location.reload();
+  };
   return (
     <Wrapper>
       <div>
@@ -39,8 +45,16 @@ const AdminOrder = () => {
           Nothing to show
         </h2>
       </div>
-    </div>) : (<div>
-      <h1 className='text-4xl font-poppins font-semibold'>Your Orders</h1>
+    </div>) : (<div className='mt-10'>
+      <div className='flex justify-between'>
+      <h1 className='text-4xl font-poppins font-semibold'>All Orders</h1>
+      <button
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={()=>handleReload()}
+            >
+              Refresh
+            </button>
+      </div>
       {isLoading ? (
           <div className="flex justify-center items-center mb-10">
             {" "}
@@ -52,7 +66,7 @@ const AdminOrder = () => {
         ) : (
           <div className='my-10'>
             {data?.map((item)=>{
-              return(<CartCard  key={item._id} item={item}/>)
+              return(<AdminCartCard  key={item._id} item={item}/>)
             })} 
           </div>
         )}

@@ -2,6 +2,11 @@ import React from "react";
 import poster from "../../assets/poster.jpg";
 
 const Pizzacard = ({ item, handlepizzaclick }) => {
+
+  
+
+
+
   return (
     <>
       {!item?.Quantity == 0 ? (
