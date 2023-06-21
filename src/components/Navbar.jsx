@@ -5,22 +5,17 @@ import adminprofile from "../assets/profile.png";
 import Wrapper from "./Wrapper";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Ordercontext from "../context/Context";
-import { useContext } from "react";
 
 const Navbar = () => {
   const [hidden, sethidden] = useState(true);
-
-  const {isadmin , setisadmin} = useContext(Ordercontext);
-
   const navigate = useNavigate();
-
   const toogledropdown = () => {
     sethidden(!hidden);
   };
 
   const handlelogout = ()=>{
     localStorage.removeItem('token'); 
+    localStorage.removeItem("isadmin");
     navigate("/login");
   }
 
@@ -67,7 +62,7 @@ const Navbar = () => {
             <div
               className="shadow-3xl cursor-pointer w-fit font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
               onClick={() => toogledropdown()}
-            >{isadmin ? (<img src={adminprofile} alt="profile" className="h-10" />) :(<img src={profile} alt="profile" className="h-10" />)}
+            >{localStorage.getItem("isadmin") ? (<img src={adminprofile} alt="profile" className="h-10" />) :(<img src={profile} alt="profile" className="h-10" />)}
               
             </div>
             {hidden ? (
@@ -82,7 +77,7 @@ const Navbar = () => {
                     >
                       <a>Profile</a>
                     </li>
-                    {isadmin ? (                    <li
+                    {localStorage.getItem("isadmin")? (                    <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
                       onClick={() => navigate("/dashboard")}
                     >
