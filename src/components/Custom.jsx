@@ -60,7 +60,6 @@ const Custom = () => {
     Cheese: cheese,
     Veg: veg
   }
-
   
 
   const handlepizzaclick = (name , imgurl ,price) => {

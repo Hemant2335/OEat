@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <Wrapper>
       <div className="flex justify-between my-5 items-center font-poppins">
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center cursor-pointer" onClick={()=>navigate("/")}>
           <img src={logo} alt="logo" className="h-10" />
           <h1 className="text-3xl text-white font-Dmsans font-bold">OEat</h1>
         </div>
@@ -36,15 +36,15 @@ const Navbar = () => {
             </li>
             <li
               className="font-medium font-poppins hover:text-red-400 cursor-pointer"
-              onClick={() => navigate("/contact")}
+              onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
             >
-              <a>Contact</a>
+              <a>About</a>
             </li>
             <li
               className="font-medium font-poppins hover:text-red-400 cursor-pointer"
-              onClick={() => navigate("/about")}
+              onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
             >
-              <a>About</a>
+              <a>Contact</a>
             </li>
           </ul>
         </nav>
