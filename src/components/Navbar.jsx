@@ -69,11 +69,11 @@ const Navbar = () => {
               ""
             ) : (
               <>
-                <div className="absolute my-5 p-4 shadow-3xl bg-[#222222] rounded-md">
+                <div className="absolute my-5 p-4 shadow-3xl bg-[#222222] z-10 rounded-md">
                   <ul className="flex flex-col gap-2">
                     <li
                       className="font-medium font-poppins hover:text-red-400 cursor-pointer"
-                      onClick={() => navigate("/")}
+                      onClick={() => navigate("/profile")}
                     >
                       <a>Profile</a>
                     </li>

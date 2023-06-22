@@ -11,5 +11,6 @@ import Order from "./Order";
 import Sucess from "./Sucess";
 import Shop from "./Shop";
 import AdminOrder from "./AdminOrder";
+import Profile from "./Profile";
 
-export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess, Shop ,AdminOrder};
+export {Homepage , Login  , Register , Navbar , Footer , About , Password ,  Dashboard , Custom , Order , Sucess, Shop ,AdminOrder , Profile};

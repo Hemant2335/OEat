@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wrapper from "./Wrapper";
 import thunder from "../assets/thunder.png";
 import badge from "../assets/badge.png";
@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div className=" flex flex-col gap-10 px-10 mt-[25vh]" id="about">
       <div className="flex md:flex-row flex-col gap-10 md:justify-between">
-        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222]">
+        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">
             <img
               src={thunder}
@@ -27,7 +27,7 @@ const About = () => {
             Experience the speed, indulge and revive
           </p>
         </div>
-        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222]">
+        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">
             <img
               src={badge}
@@ -48,7 +48,7 @@ const About = () => {
         </div>
       </div>
       <div className="flex md:flex-row flex-col gap-10 md:justify-between">
-        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222]">
+        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">
             <img
               src={custom}
@@ -67,7 +67,7 @@ const About = () => {
             meal tailored to your taste, satisfying body and soul.
           </p>
         </div>
-        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222]">
+        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">
             <img
               src={credit}

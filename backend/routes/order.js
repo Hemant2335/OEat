@@ -3,7 +3,6 @@ const Order = require("../models/Orders");
 const User = require("../models/User");
 const fetchuser = require("../middleware/fetchuser");
 
-
 const router = express.Router();
 
 // Route 1 : To create a order entry in user data
@@ -66,6 +65,26 @@ router.get('/fetchadminorders', fetchuser, async (req, res) => {
   } catch (err) {
     console.log("Some error occurred:", err);
   }
+})
+
+// To Delete the order if Received
+
+router.delete('/deleteorder/:id', fetchuser, async (req, res) => {
+  //Find The order to be Deleted and Delete
+  try {
+  let order = await Order.findById(req.params.id);
+  //Allow Only if the User is correct
+  if (order?.user.toString() !== req?.user?.id)
+  { 
+    return res.status(401).send("Acess Denied");
+  }
+
+  order = await Order.findByIdAndDelete(req.params.id)
+  res.json({"Sucess": "the Order has been deleted", order});
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal Server Error");
+} 
 })
 
 

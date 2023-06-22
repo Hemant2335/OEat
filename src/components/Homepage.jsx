@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Ordercontext from '../context/Context';
 import { useContext } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+gsap.registerPlugin(ScrollTrigger);
 import About from "../components/About";
 import Contact from './Contact';
 
@@ -22,6 +24,32 @@ const Homepage = () => {
     }
     gsap.fromTo(".head" , {x: "random(-200 , 200)" ,opacity:0 } , {duration: 1.5, x:0 , opacity : 100 ,stagger : 0.25 , ease:"power3.out"});
     gsap.fromTo(".img" , {x:0 ,opacity:0  , scale : 0.6} , {duration: 1.5, x:0 , opacity : 100 ,scale:1, ease:"power3.out"});
+    gsap.fromTo(".card", {y:100 , opacity : 0},{
+      scrollTrigger: {
+        trigger: ".card",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
+      },
+      opacity: 100,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger : 0.25
+    });
+    gsap.fromTo(".social", {y:100 , opacity : 0},{
+      scrollTrigger: {
+        trigger: ".card",
+        start: "top 20%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
+      },
+      opacity: 100,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger : 0.25
+    });
   },[])
   return (
     <Wrapper>

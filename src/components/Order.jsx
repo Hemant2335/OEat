@@ -5,10 +5,14 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import empty from "../assets/empty.jpg";
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import Ordercontext from '../context/Context'
 
 const Order = () => {
 
   const navigate = useNavigate();
+
+  const {setorder} = useContext(Ordercontext);
 
   const [data, setdata] = useState("");
   const [isLoading, setisLoading] = useState(true);
@@ -24,11 +28,16 @@ const Order = () => {
     });
     const json = await response.json();
     setdata(json);
+    setorder(json);
     setisLoading(false);
     console.log(data);
   }
   show();
   }, []);
+
+  const handleReload = () => {
+    window.location.reload();
+  };
   return (
     <Wrapper>
       <div>
@@ -41,14 +50,22 @@ const Order = () => {
         <div className="flex justify-center">
           <button
             className="shadow-3xl flex items-center gap-2 font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/shop")}
           >
             Go to Shopping
           </button>
         </div>
       </div>
     </div>) : (<div>
+      <div className='flex justify-between'>
       <h1 className='text-4xl font-poppins font-semibold'>Your Orders</h1>
+      <button
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-red-400 hover:text-black transition-transform"
+              onClick={()=>handleReload()}
+            >
+              Refresh
+            </button>
+      </div>
       {isLoading ? (
           <div className="flex justify-center items-center mb-10">
             {" "}

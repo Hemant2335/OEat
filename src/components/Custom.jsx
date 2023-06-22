@@ -3,7 +3,7 @@ import Wrapper from "./Wrapper";
 import Pizzacard from "./Custom/Pizzacard";
 import { TiShoppingCart } from "react-icons/ti";
 import { useNavigate } from 'react-router-dom';
-import poster from "../assets/poster.jpg"
+import poster from "../assets/poster.jpg";
 
 const Custom = () => {
     const [base, setbase] = useState({name : null , url : null ,price : null});
