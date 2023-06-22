@@ -165,7 +165,7 @@ const Custom = () => {
       <div className="mt-10">
         <h1 className="text-xl font-poppins font-semibold">Custom Pizza</h1>
          {/* base */}
-        <div className="flex gap-5 mt-10">
+        <div className="flex gap-5 mt-10 md:flex-row flex-col justify-center items-center">
         {(custompizza?.Base?.url) ? (<>          <div
             className="w-fit shadow-3xl p-5 flex flex-col gap-2 bg-[#222222] rounded-lg"
           >
@@ -224,7 +224,7 @@ const Custom = () => {
         <h1 className="text-xl font-poppins font-semibold mt-10">
           Select the Base Pizza
         </h1>
-        <div className="flex gap-5 mt-10">
+        <div className="flex gap-5 mt-10 md:flex-row flex-col justify-center items-center md:flex-row flex-col justify-center items-center">
           {pizza?.MainName?.map((item) => {
             return (
               <Pizzacard
@@ -239,7 +239,7 @@ const Custom = () => {
         <h1 className="text-xl font-poppins font-semibold mt-10">
           Select Sause
         </h1>
-        <div className="flex gap-5 mt-10">
+        <div className="flex gap-5 mt-10 md:flex-row flex-col justify-center items-center">
           {Sause?.MainName?.map((item) => {
             return (
               <Pizzacard
@@ -254,7 +254,7 @@ const Custom = () => {
         <h1 className="text-xl font-poppins font-semibold mt-10">
           Select the Cheese
         </h1>
-        <div className="flex gap-5 mt-10">
+        <div className="flex gap-5 mt-10 md:flex-row flex-col justify-center items-center">
           {Cheese?.MainName?.map((item) => {
             return (
               <Pizzacard
@@ -269,7 +269,7 @@ const Custom = () => {
         <h1 className="text-xl font-poppins font-semibold mt-10">
           Select the Veggies
         </h1>
-        <div className="flex gap-5 mt-10">
+        <div className="flex gap-5 mt-10 md:flex-row flex-col justify-center items-center">
           {Veg?.MainName?.map((item) => {
             return (
               <Pizzacard
