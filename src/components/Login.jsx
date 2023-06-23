@@ -57,7 +57,7 @@ const Login = () => {
           <div className="bg-[#222222] px-2 py-4 rounded-md flex gap-2 ">
             <h3>Password :</h3>
             <input
-              type="text"
+              type="password"
               className="border-none bg-[#222222] w-fit focus:outline-0"
               name="Password"
               onChange={onchange}
